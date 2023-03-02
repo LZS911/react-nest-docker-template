@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test Chat should render Chat to match snapshot 1`] = `
+<div>
+  <div>
+    <div>
+      <button
+        class="ant-btn ant-btn-link ant-btn-dangerous"
+        type="button"
+      >
+        <span
+          class=""
+        >
+          changeThemeMode
+        </span>
+      </button>
+      <button
+        class="ant-btn ant-btn-primary  border-primary focus:border-primary hover:border-primary !bg-primary"
+        type="button"
+      >
+        <span
+          class="!text-white"
+        >
+          blue
+        </span>
+      </button>
+      <button
+        class="ant-btn ant-btn-default  border-secondary focus:border-secondary hover:border-secondary !bg-secondary"
+        type="button"
+      >
+        <span
+          class="!text-black dark:!text-white"
+        >
+          purple
+        </span>
+      </button>
+      <button
+        class="ant-btn ant-btn-default  dark:bg-darkMode focus:border-primary hover:border-primary focus:!text-primary hover:!text-primary"
+        type="button"
+      >
+        <span
+          class="dark:text-white hover:!text-primary focus:!text-primary"
+        >
+          green
+        </span>
+      </button>
+      <button
+        class="ant-btn ant-btn-dashed  dark:bg-darkMode focus:border-primary hover:border-primary focus:!text-primary hover:!text-primary"
+        type="button"
+      >
+        <span
+          class="dark:text-white hover:!text-primary focus:!text-primary"
+        >
+          dashed
+        </span>
+      </button>
+      <button
+        class="ant-btn ant-btn-ghost  dark:bg-darkMode focus:border-primary hover:border-primary focus:!text-primary hover:!text-primary"
+        type="button"
+      >
+        <span
+          class="dark:text-white hover:!text-primary focus:!text-primary"
+        >
+          ghost
+        </span>
+      </button>
+      <button
+        class="ant-btn ant-btn-default  dark:bg-darkMode focus:border-primary hover:border-primary focus:!text-primary hover:!text-primary"
+        type="button"
+      >
+        <span
+          class="dark:text-white hover:!text-primary focus:!text-primary"
+        >
+          default
+        </span>
+      </button>
+      <button
+        class="ant-btn ant-btn-default ant-btn-dangerous  dark:bg-darkMode "
+        type="button"
+      >
+        <span>
+          danger
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;

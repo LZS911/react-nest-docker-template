@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test Button should match snapshot 1`] = `
+<div>
+  <button
+    class="ant-btn ant-btn-default  dark:bg-darkMode focus:border-primary hover:border-primary focus:!text-primary hover:!text-primary"
+    type="button"
+  >
+    <span
+      class="dark:text-white hover:!text-primary focus:!text-primary"
+    />
+  </button>
+</div>
+`;
+
+exports[`test useRenderButton should match snapshot 1`] = `
+Object {
+  "classNameList": Array [
+    " dark:bg-darkMode focus:border-primary hover:border-primary focus:!text-primary hover:!text-primary",
+    "dark:text-white hover:!text-primary focus:!text-primary",
+  ],
+  "realType": undefined,
+}
+`;
+
+exports[`test useRenderButton should match snapshot 2`] = `
+Object {
+  "classNameList": Array [
+    " border-primary focus:border-primary hover:border-primary !bg-primary",
+    "!text-white",
+  ],
+  "realType": "primary",
+}
+`;
+
+exports[`test useRenderButton should match snapshot 3`] = `
+Object {
+  "classNameList": Array [
+    " border-secondary focus:border-secondary hover:border-secondary !bg-secondary",
+    "!text-black dark:!text-white",
+  ],
+  "realType": undefined,
+}
+`;
+
+exports[`test useRenderButton should match snapshot 4`] = `
+Object {
+  "classNameList": Array [
+    undefined,
+    "text-xs, text-gray-500, opacity-90, hover:text-sky-500",
+  ],
+  "realType": "link",
+}
+`;
+
+exports[`test useRenderButton should match snapshot 5`] = `
+Object {
+  "classNameList": Array [
+    "  !bg-primary",
+    undefined,
+  ],
+  "realType": "primary",
+}
+`;
+
+exports[`test useRenderButton should match snapshot 6`] = `
+Object {
+  "classNameList": Array [
+    "  !bg-secondary",
+    undefined,
+  ],
+  "realType": undefined,
+}
+`;
+
+exports[`test useRenderButton should match snapshot 7`] = `
+Object {
+  "classNameList": Array [
+    undefined,
+    "",
+  ],
+  "realType": "link",
+}
+`;
+
+exports[`test useRenderButton should match snapshot 8`] = `
+Object {
+  "classNameList": Array [
+    " dark:bg-darkMode focus:border-primary hover:border-primary focus:!text-primary hover:!text-primary",
+    "dark:text-white hover:!text-primary focus:!text-primary",
+  ],
+  "realType": "default",
+}
+`;
+
+exports[`test useRenderButton should match snapshot 9`] = `
+Object {
+  "classNameList": Array [
+    "cls dark:bg-darkMode focus:border-primary hover:border-primary focus:!text-primary hover:!text-primary",
+    "dark:text-white hover:!text-primary focus:!text-primary",
+  ],
+  "realType": undefined,
+}
+`;
+
+exports[`test useRenderButton should match snapshot 10`] = `
+Object {
+  "classNameList": Array [
+    " dark:bg-darkMode ",
+    undefined,
+  ],
+  "realType": undefined,
+}
+`;
+
+exports[`test useRenderButton should match snapshot 11`] = `
+Object {
+  "classNameList": Array [
+    " dark:bg-darkMode focus:border-primary hover:border-primary focus:!text-primary hover:!text-primary",
+    "dark:text-white hover:!text-primary focus:!text-primary",
+  ],
+  "realType": undefined,
+}
+`;
