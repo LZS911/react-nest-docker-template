@@ -1,32 +1,27 @@
-import RouterComponent from './router';
-import { ConfigProvider } from 'antd';
 import useTheme, {
   getCurrentColorSchemeStrings,
   useInitTheme,
 } from './customHooks/useTheme';
 import { useInitFontFamily } from './customHooks/useFontFamily';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
   const { isDark, currentColorScheme } = useTheme();
-  const [primaryColor] = getCurrentColorSchemeStrings(
-    isDark,
-    currentColorScheme
-  );
-
-  ConfigProvider.config({
-    theme: {
-      primaryColor,
-    },
-  });
+  getCurrentColorSchemeStrings(isDark, currentColorScheme);
 
   useInitTheme();
   useInitFontFamily();
 
-  return (
-    <ConfigProvider>
-      <RouterComponent />
-    </ConfigProvider>
-  );
+  useEffect(() => {
+    const instance = axios.create();
+    console.log('object');
+    instance.get('/hello').then((res) => {
+      console.log(res);
+    });
+  }, []);
+
+  return ' Hello nest2';
 }
 
 export default App;

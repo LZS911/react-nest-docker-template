@@ -32,11 +32,5 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [
-    require('./tailwind-plugins/tailwind-water-wave.plugin'),
-    require('./tailwind-plugins/tailwind-antd-popover-theme.plugin'),
-    require('./tailwind-plugins/tailwind-antd-menu-theme.plugin'),
-    require('./tailwind-plugins/tailwind-antd-options-theme.plugin'),
-    require('./tailwind-plugins/tailwind-antd-collapse-theme.plugin'),
-  ],
+  plugins: [],
 };

@@ -1,12 +1,16 @@
-FROM node:16-alpine
-Run mkdir -p /svr/app
-WORKDIR /svr/app
-RUN yarn add -g @nestjs/cli
-COPY package.json .
-COPY yarn.lock .
-RUN yarn
+FROM node:16.13.0-alpine
+WORKDIR /projects
+COPY ./pnpm-lock.yaml ./
+
+RUN npm install -g pnpm \
+    && pnpm fetch
+
 COPY . .
+
+RUN pnpm install -r --offline
+
+VOLUME ["/projects/node_modules/", "/projects/packages/backend/node_modules/", "/projects/.pnpm-store/"]
 
 # Value set in .env file.
 EXPOSE $BACKEND_PORT
-CMD ["yarn", "start:debug"]
+CMD rm -rf dist && cd packages/backend && pnpm start:debug

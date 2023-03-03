@@ -44,7 +44,7 @@ export default defineConfig((config) => {
         open: true,
         gzipSize: true,
         brotliSize: true,
-      })
+      }) as any
     );
   }
   return {
@@ -63,6 +63,13 @@ export default defineConfig((config) => {
     },
     minify: 'terser',
     brotliSize: false,
+    server: {
+      proxy: {
+        '/v': {
+          target: 'http:/172.20.0.4:7878/',
+        },
+      },
+    },
     rollupOptions: {
       plugins: [],
       rollupOptions: {

@@ -1,4 +1,14 @@
-FROM node:16-slim
-WORKDIR /usr/src/app
+FROM node:16.13.0-alpine
+WORKDIR /projects
+COPY ./pnpm-lock.yaml ./
+
+RUN npm install -g pnpm \
+    && pnpm fetch
+
 COPY . .
-RUN yarn
+
+RUN pnpm install -r --offline
+
+VOLUME ["/projects/node_modules/", "/projects/packages/frontend/node_modules/", "/projects/.pnpm-store/"]
+
+CMD cd packages/frontend && pnpm start

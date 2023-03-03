@@ -1,7 +1,5 @@
 /* IFTRUE_isDebug */
-@import 'antd/dist/antd.min.css';
 /* FITRUE_isDebug */
-@import 'antd/dist/antd.variable.min.css';
 @import '@material/react-linear-progress/dist/linear-progress.css';
 
 body {
