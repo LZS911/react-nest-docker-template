@@ -52,6 +52,8 @@
     "tailwindcss",
     "Roboto",
     "antv",
-    "testid"
+    "testid",
+    "haibara",
+    "nestjs"
   ]
 }

@@ -65,9 +65,7 @@ export default defineConfig((config) => {
     brotliSize: false,
     server: {
       proxy: {
-        '/v': {
-          target: 'http:/172.20.0.4:7878/',
-        },
+        '/v': 'http://172.25.0.4:7878/',
       },
     },
     rollupOptions: {
@@ -78,11 +76,6 @@ export default defineConfig((config) => {
             lodash: ['lodash'],
             antd: ['antd'],
             antCharts: ['@ant-design/plots'],
-            // antComponents: [
-            //   '@ant-design/pro-layout',
-            //   '@ant-design/pro-table',
-            //   '@ant-design/pro-card',
-            // ],
           },
         },
       },

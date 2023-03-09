@@ -1,0 +1,258 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/v1/users": {
+      "post": {
+        "operationId": "createUserV1",
+        "summary": "create user",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateUserDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SuccessResponse" }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "get": {
+        "operationId": "getUsersV1",
+        "summary": "get all users",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/UserEntity" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      }
+    },
+    "/v1/users/{id}": {
+      "get": {
+        "operationId": "getUserProfileV1",
+        "summary": "get user",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserEntity" }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "patch": {
+        "operationId": "updateUserV1",
+        "summary": "update user",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateUserDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SuccessResponse" }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "delete": {
+        "operationId": "deleteUserV1",
+        "summary": "delete user",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SuccessResponse" }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      }
+    },
+    "/v1/auth/login": {
+      "post": {
+        "operationId": "AuthController_login",
+        "summary": "login",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LoginDto" }
+            }
+          }
+        },
+        "responses": { "200": { "description": "" } },
+        "tags": ["auth"]
+      }
+    }
+  },
+  "info": {
+    "title": "Todo Apis",
+    "description": "The todo API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [{ "name": "todo", "description": "" }],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "CreateUserDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "qq@gmail.com",
+            "description": "email"
+          },
+          "name": {
+            "type": "string",
+            "example": "ly",
+            "description": "user name"
+          },
+          "password": {
+            "type": "string",
+            "example": "******",
+            "description": "user password"
+          }
+        },
+        "required": ["email", "name", "password"]
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "example": 0,
+            "description": "status code"
+          },
+          "message": {
+            "type": "string",
+            "example": "ok",
+            "description": "response message"
+          }
+        },
+        "required": ["statusCode", "message"]
+      },
+      "UserEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1,
+            "description": "primary key"
+          },
+          "email": {
+            "type": "string",
+            "example": "qq@gmail.com",
+            "description": "email"
+          },
+          "name": {
+            "type": "string",
+            "example": "ly",
+            "description": "user name"
+          },
+          "password": {
+            "type": "string",
+            "example": "******",
+            "description": "user password"
+          }
+        },
+        "required": ["id", "email", "name", "password"]
+      },
+      "UpdateUserDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "qq@gmail.com",
+            "description": "email"
+          },
+          "name": {
+            "type": "string",
+            "example": "ly",
+            "description": "user name"
+          },
+          "password": {
+            "type": "string",
+            "example": "******",
+            "description": "user password"
+          }
+        },
+        "required": ["email", "name", "password"]
+      },
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "qq@gmail.com",
+            "description": "email"
+          },
+          "password": {
+            "type": "string",
+            "example": "******",
+            "description": "user password"
+          }
+        },
+        "required": ["email", "password"]
+      }
+    }
+  }
+}

@@ -6,6 +6,7 @@ src/locale/en-language
 src/api
 prettier.config.js
 node_modules
+packages/**/node_modules
 
 # config
 vite.config.ts
@@ -15,3 +16,4 @@ postcss.config.js
 template-generate.js
 jest.config.js
 jest-setup.ts
+dist

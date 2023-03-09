@@ -1,6 +1,6 @@
 export default {
   loginForm: {
-    submitText: '登 陆',
+    submitText: '登  录',
     usernamePlaceholder: '请输入用户名',
     passwordPlaceholder: '请输入密码',
     usernameLabel: '用户名',
@@ -11,7 +11,7 @@ export default {
     Title: 'React',
     title: 'React',
   },
-  loginTitle: '登陆',
+  loginTitle: '登录',
   otherWayLogin: '第三方登录',
   signUpTips: '没有账号?点击注册',
 };

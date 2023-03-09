@@ -13,4 +13,4 @@ VOLUME ["/projects/node_modules/", "/projects/packages/backend/node_modules/", "
 
 # Value set in .env file.
 EXPOSE $BACKEND_PORT
-CMD rm -rf dist && cd packages/backend && pnpm start:debug
+CMD rm -rf dist && cd packages/backend && rm -rf ./prisma/migrations && npx prisma migrate deploy && pnpx prisma generate && pnpm start:debug
