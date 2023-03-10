@@ -12,7 +12,8 @@ services:
     volumes:
       - .:/projects
     networks:
-      - bp-network
+      bp-network:
+        ipv4_address: 172.25.0.3
   backend:
     container_name: backend
     build:
@@ -23,7 +24,8 @@ services:
     volumes:
       - .:/projects
     networks:
-      - bp-network
+      bp-network:
+        ipv4_address: 172.25.0.2
     ports:
       - '${BACKEND_PORT}:${BACKEND_PORT}'
     depends_on:
@@ -46,7 +48,8 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
-      - bp-network
+      bp-network:
+        ipv4_address: 172.25.0.5
   pgadmin-portal:
     image: dpage/pgadmin4
     restart: always
@@ -63,10 +66,14 @@ services:
     depends_on:
       - bp-pg-db
     networks:
-      - bp-network
+      bp-network:
+        ipv4_address: 172.25.0.6
 volumes:
   pgdata:
   pgadmin:
 networks:
   bp-network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16

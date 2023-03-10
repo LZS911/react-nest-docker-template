@@ -65,7 +65,7 @@ export default defineConfig((config) => {
     brotliSize: false,
     server: {
       proxy: {
-        '/v': 'http://172.25.0.4:7878/',
+        '/v': 'http://172.25.0.2:7878/',
       },
     },
     rollupOptions: {

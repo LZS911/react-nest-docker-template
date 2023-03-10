@@ -1,38 +1,32 @@
+import RouterComponent from './router';
+import { ConfigProvider, theme } from 'antd';
 import useTheme, {
   getCurrentColorSchemeStrings,
   useInitTheme,
 } from './customHooks/useTheme';
 import { useInitFontFamily } from './customHooks/useFontFamily';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 function App() {
-  const [searchValue, setSearchValue] = useState('');
   const { isDark, currentColorScheme } = useTheme();
-  getCurrentColorSchemeStrings(isDark, currentColorScheme);
+  const [primaryColor] = getCurrentColorSchemeStrings(
+    isDark,
+    currentColorScheme
+  );
 
   useInitTheme();
   useInitFontFamily();
 
-  useEffect(() => {
-    axios.get('/v1/users').then((res) => {
-      console.log(res);
-    });
-  }, []);
-
   return (
-    <div>
-      <button>增加</button>
-      <button>删除</button>
-      <div>
-        <input
-          title="search"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-        />
-        <button>查询</button>
-      </div>
-    </div>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: primaryColor,
+        },
+        algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
+      }}
+    >
+      <RouterComponent />
+    </ConfigProvider>
   );
 }
 

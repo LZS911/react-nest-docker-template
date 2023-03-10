@@ -8,8 +8,7 @@ export default {
     forgotPassword: '忘记密码?',
   },
   loginHeader: {
-    Title: 'React',
-    title: 'React',
+    title: 'Todo',
   },
   loginTitle: '登录',
   otherWayLogin: '第三方登录',

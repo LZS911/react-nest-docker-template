@@ -13,6 +13,7 @@ import {
 } from '../../store/userConfig';
 import { IColorSchemeKey } from '../../typing/common.type';
 import LocalStorageWrapper from '../../utils/LocalStorageWrapper';
+import { baseTypeMatch } from 'rust-like-match';
 
 const addClass = (className: string) => {
   if (document.documentElement.classList.contains(className)) {
@@ -193,12 +194,12 @@ const useTheme = () => {
     if (colorScheme === currentColorScheme) {
       return;
     }
-    const actionMap = new Map<ColorSchemeEnum, () => void>([
-      [ColorSchemeEnum.Blue, () => _setColorScheme('Blue')],
-      [ColorSchemeEnum.Green, () => _setColorScheme('Green')],
-      [ColorSchemeEnum.Purple, () => _setColorScheme('Purple')],
-    ]);
-    actionMap.get(colorScheme)?.();
+
+    baseTypeMatch(colorScheme, {
+      [ColorSchemeEnum.Blue]: () => _setColorScheme('Blue'),
+      [ColorSchemeEnum.Green]: () => _setColorScheme('Green'),
+      [ColorSchemeEnum.Purple]: () => _setColorScheme('Purple'),
+    });
   };
 
   return {

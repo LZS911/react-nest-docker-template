@@ -13,10 +13,24 @@ export class HttpExceptionsFilter implements ExceptionFilter {
     const request = ctx.getRequest();
     const status = exception.getStatus();
 
-    response.status(status).json({
+    const exceptionRes = exception.getResponse();
+
+    const responseJson = {
       statusCode: status,
       timestamp: new Date().toISOString(),
-      path: request.url,
-    });
+      url: request.url,
+    };
+
+    response.status(status).json(
+      typeof exceptionRes === 'string'
+        ? {
+            ...responseJson,
+            message: exceptionRes,
+          }
+        : {
+            ...responseJson,
+            ...exceptionRes,
+          }
+    );
   }
 }

@@ -1,7 +1,7 @@
 /* IFTRUE_isDebug */
 /* FITRUE_isDebug */
 @import '@material/react-linear-progress/dist/linear-progress.css';
-
+@import './prefilght.css';
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

@@ -8,8 +8,7 @@ export default {
     forgotPassword: 'Forgot Password?',
   },
   loginHeader: {
-    Title: 'React',
-    title: 'React',
+    title: 'Todo',
   },
   loginTitle: 'Login',
   otherWayLogin: 'Other Login',
