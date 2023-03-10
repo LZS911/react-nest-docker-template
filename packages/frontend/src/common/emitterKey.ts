@@ -1,5 +1,3 @@
-enum EmitterKey {
-  storageEvent = 'storageEvent',
-}
+type EmitterKey = 'storageEvent' | 'newListener' | 'removeListener';
 
 export default EmitterKey;

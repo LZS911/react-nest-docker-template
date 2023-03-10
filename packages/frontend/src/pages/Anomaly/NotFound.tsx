@@ -1,6 +1,6 @@
+import { Button } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import ThemeBase from '../../components/ThemeBase';
 
 const targetPath = '/dashboard';
 const NotFound: React.FC = () => {
@@ -11,7 +11,11 @@ const NotFound: React.FC = () => {
   };
   return (
     <div className="flex min-h-full flex-col items-center justify-center">
-      <img src="/static/images/not-found.png" className="my-20" />
+      <img
+        title="not-found"
+        src="/static/images/not-found.png"
+        className="my-20"
+      />
 
       <p className="text-4xl dark:text-white">{t('anomaly.notFound.title')}</p>
 
@@ -19,9 +23,9 @@ const NotFound: React.FC = () => {
         {t('anomaly.notFound.subTitle')}
       </p>
 
-      <ThemeBase.Button type="primary" onClick={backToHome}>
+      <Button type="primary" onClick={backToHome}>
         {t('anomaly.notFound.backToHome')}
-      </ThemeBase.Button>
+      </Button>
     </div>
   );
 };

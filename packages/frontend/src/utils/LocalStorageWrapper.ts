@@ -1,9 +1,8 @@
-import EmitterKey from '../common/emitterKey';
-import eventEmitter from './eventEmitter';
+import EventEmitter from './eventEmitter';
 
 class LocalStorageWrapper {
   public set<T extends string = string>(key: string, value: T) {
-    eventEmitter.emit(EmitterKey.storageEvent, {
+    EventEmitter.emit('storageEvent', {
       key,
       value,
     });

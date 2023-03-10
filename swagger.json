@@ -1,0 +1,327 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/v1/users": {
+      "post": {
+        "operationId": "createUserV1",
+        "summary": "create user",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateUserDtoV1" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SuccessResponse" }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "get": {
+        "operationId": "getUsersV1",
+        "summary": "get all users",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GetUsersResV1" }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      }
+    },
+    "/v1/users/{id}": {
+      "get": {
+        "operationId": "getUserProfileV1",
+        "summary": "get user",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GetUserResV1" }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "patch": {
+        "operationId": "updateUserV1",
+        "summary": "update user",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "number" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateUserDtoV1" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SuccessResponse" }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "delete": {
+        "operationId": "deleteUserV1",
+        "summary": "delete user",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SuccessResponse" }
+              }
+            }
+          }
+        },
+        "tags": ["users"]
+      }
+    },
+    "/v1/auth/login": {
+      "post": {
+        "operationId": "AuthController_login",
+        "summary": "login",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LoginDtoV1" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserLoginResV1" }
+              }
+            }
+          }
+        },
+        "tags": ["auth"]
+      }
+    }
+  },
+  "info": {
+    "title": "Todo Apis",
+    "description": "The todo API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [{ "name": "todo", "description": "" }],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "CreateUserDtoV1": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "qq@gmail.com",
+            "description": "email"
+          },
+          "name": {
+            "type": "string",
+            "example": "ly",
+            "description": "user name"
+          },
+          "password": {
+            "type": "string",
+            "example": "******",
+            "description": "user password"
+          }
+        },
+        "required": ["email", "password"]
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "example": 0,
+            "description": "status code"
+          },
+          "message": {
+            "type": "string",
+            "example": "ok",
+            "description": "response message"
+          }
+        },
+        "required": ["statusCode", "message"]
+      },
+      "UserEntityV1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1,
+            "description": "primary key"
+          },
+          "email": {
+            "type": "string",
+            "example": "qq@gmail.com",
+            "description": "email"
+          },
+          "name": {
+            "type": "string",
+            "example": "ly",
+            "description": "user name"
+          }
+        },
+        "required": ["id", "email", "name"]
+      },
+      "GetUsersResV1": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "example": 0,
+            "description": "status code"
+          },
+          "message": {
+            "type": "string",
+            "example": "ok",
+            "description": "response message"
+          },
+          "data": {
+            "description": "response data",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/UserEntityV1" }
+          }
+        },
+        "required": ["statusCode", "message", "data"]
+      },
+      "GetUserResV1": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "example": 0,
+            "description": "status code"
+          },
+          "message": {
+            "type": "string",
+            "example": "ok",
+            "description": "response message"
+          },
+          "data": {
+            "description": "response data",
+            "allOf": [{ "$ref": "#/components/schemas/UserEntityV1" }]
+          }
+        },
+        "required": ["statusCode", "message", "data"]
+      },
+      "UpdateUserDtoV1": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "qq@gmail.com",
+            "description": "email"
+          },
+          "name": {
+            "type": "string",
+            "example": "ly",
+            "description": "user name"
+          },
+          "password": {
+            "type": "string",
+            "example": "******",
+            "description": "user password"
+          }
+        },
+        "required": ["email", "password"]
+      },
+      "LoginDtoV1": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "qq@gmail.com",
+            "description": "email"
+          },
+          "password": {
+            "type": "string",
+            "example": "******",
+            "description": "user password"
+          }
+        },
+        "required": ["email", "password"]
+      },
+      "JwtToken": {
+        "type": "object",
+        "properties": {
+          "access_token": { "type": "string", "description": "jwt token" }
+        },
+        "required": ["access_token"]
+      },
+      "UserLoginResV1": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "example": 0,
+            "description": "status code"
+          },
+          "message": {
+            "type": "string",
+            "example": "ok",
+            "description": "response message"
+          },
+          "data": {
+            "description": "response data",
+            "allOf": [{ "$ref": "#/components/schemas/JwtToken" }]
+          }
+        },
+        "required": ["statusCode", "message", "data"]
+      }
+    }
+  }
+}

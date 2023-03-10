@@ -1,48 +1,92 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import EmitterKey from '../common/emitterKey';
 
-type EmitterFunction = ((...args: any) => any) & {
-  event_emitter_once?: boolean;
-};
-
+type EmitterFunction = (...args: any) => any;
 class EventEmitter {
-  private readonly events = new Map<EmitterKey, EmitterFunction[]>();
+  private maxListeners = 10;
+  private listeners = new Map<EmitterKey, EmitterFunction[]>();
 
-  public subscribe(eventKey: EmitterKey, callback: EmitterFunction) {
-    const tempEvents = this.events.get(eventKey) ?? [];
-    tempEvents.push(callback);
-    this.events.set(eventKey, tempEvents);
+  constructor() {
+    this.maxListeners = 10;
   }
 
-  public unsubscribe(eventKey: EmitterKey, callback: EmitterFunction) {
-    if (!this.events.has(eventKey)) {
-      return;
-    }
-    let tempEvents = this.events.get(eventKey) || [];
-    tempEvents = tempEvents.filter((e) => e !== callback);
-    this.events.set(eventKey, tempEvents);
-  }
-
-  public once(eventKey: EmitterKey, callback: EmitterFunction) {
-    callback.event_emitter_once = true;
-    this.subscribe(eventKey, callback);
-  }
-
-  public emit<T = any>(eventKey: EmitterKey, ...args: T[]) {
-    if (!this.events.has(eventKey)) {
-      return;
-    }
-    let tempEvents = this.events.get(eventKey) ?? [];
-    const shouldDeleteCallback: EmitterFunction[] = [];
-    for (const c of tempEvents) {
-      if (c.event_emitter_once) {
-        shouldDeleteCallback.push(c);
+  addListener(eventName: EmitterKey, cb: EmitterFunction) {
+    if (
+      !this.listeners.has(eventName) ||
+      !Array.isArray(this.listeners.get(eventName))
+    ) {
+      this.listeners.set(eventName, [cb]);
+      if (eventName !== 'newListener') {
+        this.emit('newListener');
       }
-      c(...args);
+      return this;
     }
-    tempEvents = tempEvents.filter((e) => !shouldDeleteCallback.includes(e));
-    this.events.set(eventKey, tempEvents);
+    if (this.listeners.get(eventName).length >= this.maxListeners) {
+      console.error(
+        'MaxListenersExceededWarning: Possible EventEmitter memory leak detected. %d event6 listeners added to [EventEmitter]. Use emitter.setMaxListeners() to increase limit',
+        this.maxListeners
+      );
+    }
+
+    this.listeners.set(eventName, [...this.listeners.get(eventName), cb]);
+
+    return this;
+  }
+
+  removeListener(eventName: EmitterKey, listener: EmitterFunction) {
+    const index = (this.listeners.get(eventName) || []).indexOf(listener);
+    if (index !== -1) {
+      this.listeners.set(
+        eventName,
+        this.listeners.get(eventName).splice(index, 1)
+      );
+      if (eventName !== 'removeListener') {
+        this.emit('removeListener');
+      }
+    }
+    return this;
+  }
+
+  emit(eventName: EmitterKey, ...args) {
+    const isExistEvent =
+      this.listeners.has(eventName) && this.listeners.get(eventName).length > 0;
+
+    if (isExistEvent) {
+      this.listeners.get(eventName).forEach((cb) => {
+        cb(...args);
+      });
+    }
+    return isExistEvent;
+  }
+
+  once(eventName: EmitterKey, listener: EmitterFunction) {
+    const fn = (...args) => {
+      listener(...args);
+      this.removeListener(eventName, fn);
+    };
+    this.addListener(eventName, fn);
+    return this;
+  }
+
+  removeAllListeners(eventNames: EmitterKey[] = []) {
+    if (eventNames.length === 0) {
+      this.listeners = new Map<EmitterKey, EmitterFunction[]>();
+    } else {
+      eventNames.forEach((v) => {
+        this.listeners[v] = null;
+      });
+    }
+    return this;
+  }
+
+  listenerCount(eventName) {
+    return this.listeners.get(eventName)?.length ?? 0;
+  }
+
+  setMaxListeners(maxListeners) {
+    this.maxListeners = maxListeners;
+  }
+  getMaxListeners() {
+    return this.maxListeners;
   }
 }
 
