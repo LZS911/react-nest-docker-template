@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "preinstall": "npx only-allow pnpm",
-    "g:api": "rm -rf scripts/g_api/dist && tsc scripts/g_api/src/index.ts --outdir scripts/g_api/dist --inlineSourceMap && node scripts/g_api/dist/index.js"
+    "g:api": "node scripts/g_frontend_api/dist/index.js",
+    "g:api:dev": "cd scripts/g_frontend_api && tsc --watch"
   },
   "keywords": [],
   "author": "",

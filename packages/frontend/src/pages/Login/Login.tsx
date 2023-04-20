@@ -8,6 +8,7 @@ import ThemeBase from '../../components/ThemeBase';
 import useUserConfig from '../../customHooks/useUserConfig';
 import LoginInput from './LoginInput';
 const targetPath = '/dashboard';
+
 const Login: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();

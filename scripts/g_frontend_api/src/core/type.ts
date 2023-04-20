@@ -1,3 +1,6 @@
+export type MethodsType = 'post' | 'get' | 'patch' | 'delete';
+export type ResponsesBodyType = 'application/json';
+
 export type OpenApiType = {
   openapi: string;
   paths: OpenApiPathType;
@@ -8,30 +11,30 @@ export type OpenApiPathType = {
   [url in string]: OpenApiPathMethodType;
 };
 
-export type OpenApiPathMethodType = {
-  post?: OpenApiPathMethodInfoType;
-  get?: OpenApiPathMethodInfoType;
-  patch?: OpenApiPathMethodInfoType;
-  delete?: OpenApiPathMethodInfoType;
-};
+export type OpenApiPathMethodType = Record<
+  MethodsType,
+  OpenApiPathMethodInfoType
+>;
 
 export type OpenApiPathMethodInfoType = {
   operationId: string;
   summary: string;
   parameters: OpenApiParameterType[];
-  requestBody: OpenApiParameterType;
+  requestBody?: OpenApiRequestBodyType;
+  responses: OpenApiResponsesType;
+  tags: string[];
 };
 
 export type OpenApiParameterType = {
   name: string;
   required: boolean;
   in: string;
-  schema: SchemaType;
+  schema: { type: AllTypeString };
 };
 
 export type OpenApiRequestBodyType = {
   required: boolean;
-  content: any;
+  content: OpenApiSuccessResponsesContentType;
 };
 
 export type OpenApiResponsesType = {
@@ -43,7 +46,7 @@ export type OpenApiSuccessResponsesType = {
 };
 
 export type OpenApiSuccessResponsesContentType = {
-  'application/json': {
+  [key in ResponsesBodyType]: {
     schema: SchemaType;
   };
 };
@@ -72,4 +75,4 @@ export type OpenApiComponentSchemaPropertyType = {
   description: string;
 };
 
-export type AllTypeString = 'object' | 'string' | 'array';
+export type AllTypeString = 'object' | 'string' | 'array' | 'number';

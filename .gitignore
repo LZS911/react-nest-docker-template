@@ -15,6 +15,7 @@ dist
 dist-ssr
 stats.html
 coverage
+target
 
 # Editor directories and files
 .vscode/*
