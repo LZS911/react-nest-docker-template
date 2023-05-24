@@ -5,5 +5,6 @@ export default {
     component: 'component',
     input: 'input',
     table: 'table',
+    user: 'user',
   },
 };

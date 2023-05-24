@@ -1,9 +1,10 @@
+import React from 'react';
 import Sider from './Sider';
 export interface INavIconList {
   name: string;
   path: string;
   title: string;
-  icon?: JSX.Element;
+  icon?: React.ReactNode;
   onClick?: () => void;
   children?: Array<Omit<INavIconList, 'icon' | 'children'>>;
 }

@@ -1,4 +1,4 @@
-FROM node:16-slim as build
+FROM lzs911/pnpm
 WORKDIR /app
 COPY package.json .
 RUN pnpm i

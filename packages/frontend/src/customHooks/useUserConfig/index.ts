@@ -1,6 +1,7 @@
 import { useBoolean } from 'ahooks';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { IReduxState } from '../../store';
 import {
   setLoginUserInfo as _setLoginUserInfo,
@@ -11,6 +12,7 @@ import {
 
 const useUserConfig = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [
     getUserInfoLoading,
     { setFalse: finishGetUserInfo, setTrue: startGetUserInfo },
@@ -82,6 +84,8 @@ const useUserConfig = () => {
       isLogin: false,
       token: '',
     });
+
+    navigate('/login');
   };
 
   return {

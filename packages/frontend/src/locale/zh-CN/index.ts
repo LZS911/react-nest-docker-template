@@ -1,3 +1,4 @@
+import user from './user';
 import anomaly from './anomaly';
 import dashboard from './dashboard';
 import unit from './unit';
@@ -16,5 +17,6 @@ export default {
     unit: unit,
     dashboard: dashboard,
     anomaly: anomaly,
+    user: user,
   },
 };

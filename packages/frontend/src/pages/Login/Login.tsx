@@ -1,6 +1,7 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Form } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
+import ApiBase from '../../utils/api';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { ILoginForm } from '.';
@@ -13,19 +14,20 @@ const Login: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [form] = useForm<ILoginForm>();
-  const { setLoginUserInfo, setLoginState } = useUserConfig();
+  const { setLoginState } = useUserConfig();
   const handleLogin = async () => {
-    const { emailAddress } = await form.validateFields();
-    setLoginUserInfo({
-      username: 'Gll Ly',
-      emailAddress,
-      userProfile: 'Default user',
+    const { emailAddress, password } = await form.validateFields();
+
+    ApiBase.post('/v1/auth/login', {
+      email: emailAddress,
+      password,
+    }).then((res) => {
+      setLoginState({
+        token: `Bearer ${res.data.data.access_token}`,
+        isLogin: true,
+      });
+      navigate(targetPath);
     });
-    setLoginState({
-      token: 'df3fd3',
-      isLogin: true,
-    });
-    navigate(targetPath);
   };
   return (
     <div className="flex min-h-screen w-screen min-w-full flex-col bg-gradient-to-r from-pink-300 via-purple-300 to-sky-500 dark:from-slate-900 dark:to-stone-900">
@@ -50,7 +52,7 @@ const Login: React.FC = () => {
               name="emailAddress"
             >
               <LoginInput
-                label={t('login.loginForm.usernameLabel')}
+                label={t('login.loginForm.emailLabel')}
                 placeholder={t('login.loginForm.usernamePlaceholder')}
                 prefix={<UserOutlined />}
                 name="emailAddress"

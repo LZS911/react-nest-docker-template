@@ -29,4 +29,8 @@ export default {
       Mon: '周一',
     },
   },
+  request: {
+    noticeFailTitle: '请求错误',
+  },
+  unknownError: '未知错误',
 };

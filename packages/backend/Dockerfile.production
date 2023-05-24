@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM lzs911/pnpm
 ARG NODE_ENV=staging
 WORKDIR /app
 COPY . .

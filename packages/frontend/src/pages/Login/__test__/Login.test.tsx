@@ -47,7 +47,7 @@ describe('test Login', () => {
   const setLoginStateMock = jest.fn();
   beforeEach(() => {
     useNavigateMock.mockReturnValue(navigateMock);
-    useDispatchMock.mockImplementation(() => () => {});
+    useDispatchMock.mockImplementation(() => jest.fn());
     useSelectorMock.mockImplementation((selector) =>
       selector({
         userConfig: mockUserConfig,

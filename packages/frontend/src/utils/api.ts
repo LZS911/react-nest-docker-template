@@ -5,22 +5,30 @@ import i18n from '../locale';
 import Download from './Download';
 import CONSTANT from '../common/constant';
 import { setLoginState, setLoginUserInfo } from '../store/userConfig';
-
 const ApiBase = axios.create();
-
+const doNotAddAuthRequest = ['v1/auth/login'];
 export const authInvalid = () => {
   const targetUrl = window.location.pathname;
   if (targetUrl === '/login') {
     return;
   }
-
   window.location.href = `/login?${CONSTANT.REDIRECT_KEY_PARAMS_NAME}=${targetUrl}`;
   store.dispatch(
-    setLoginUserInfo({ username: '', emailAddress: '', userProfile: '' })
+    setLoginUserInfo({
+      username: '',
+      emailAddress: '',
+      userProfile: '',
+    })
   );
-  store.dispatch(setLoginState({ isLogin: false, token: '' }));
+  store.dispatch(
+    setLoginState({
+      isLogin: false,
+      token: '',
+    })
+  );
 };
 
+const successStatusCode = [200, 201];
 ApiBase.interceptors.response.use(
   (res) => {
     if (res.status === 401) {
@@ -40,12 +48,12 @@ ApiBase.interceptors.response.use(
       Download.downloadByCreateElementA(res.data, filename);
       return res;
     } else if (
-      (res.status === 200 &&
+      (successStatusCode.includes(res.status) &&
         res?.data?.code !== CONSTANT.RESPONSE_SUCCESS_CODE) ||
-      res.status !== 200
+      !successStatusCode.includes(res.status)
     ) {
       notification.error({
-        message: i18n.t('common.request.noticeFailTitle'),
+        message: i18n.t<string>('common.request.noticeFailTitle'),
         description: res?.data?.message ?? i18n.t('common.unknownError'),
       });
     }
@@ -57,7 +65,7 @@ ApiBase.interceptors.response.use(
     } else if (error?.response?.status !== 200) {
       const response = error?.response;
       notification.error({
-        message: i18n.t('common.request.noticeFailTitle'),
+        message: i18n.t<string>('common.request.noticeFailTitle'),
         description:
           response?.data?.message ??
           response?.statusText ??
@@ -67,5 +75,19 @@ ApiBase.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
+ApiBase.interceptors.request.use((config) => {
+  if (
+    !store.getState().userConfig.token ||
+    doNotAddAuthRequest.some((url) => config.url === url)
+  ) {
+    return config;
+  }
+  return {
+    ...config,
+    headers: {
+      ...config.headers,
+      Authorization: store.getState().userConfig.token,
+    },
+  };
+});
 export default ApiBase;

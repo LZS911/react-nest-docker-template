@@ -4,10 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import useResizeObserver from 'use-resize-observer';
 import { userConfigInitialState } from '../../../store/userConfig';
 import { layoutInitialState } from '../../../store/layout';
-import {
-  renderWithRedux,
-  renderWithRouter,
-} from '../../../testUtils/customRender';
+import { renderWithRouter } from '../../../testUtils/customRender';
 import Layout from '../index';
 import { waitFor } from '@testing-library/react';
 

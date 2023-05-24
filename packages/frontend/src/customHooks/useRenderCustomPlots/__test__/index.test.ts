@@ -17,7 +17,7 @@ describe('test useRenderCustomPlots', () => {
   const useDispatchMock: jest.Mock = useDispatch as jest.Mock;
 
   beforeEach(() => {
-    useDispatchMock.mockImplementation(() => {});
+    useDispatchMock.mockImplementation(() => jest.fn());
     useSelectorMock.mockImplementation((selector) => {
       return selector({
         userConfig: {

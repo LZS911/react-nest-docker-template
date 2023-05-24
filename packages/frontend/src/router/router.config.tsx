@@ -1,51 +1,84 @@
-import { CodeSandboxOutlined, DashboardOutlined } from '@ant-design/icons';
+import {
+  CodeSandboxOutlined,
+  DashboardOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 import { lazy } from 'react';
-import { RouterItem } from '.';
+import { Navigate } from 'react-router-dom';
+import { RouterConfigItem } from '.';
 
-export const routerConfig: RouterItem[] = [
+const Dashboard = lazy(() => import('../pages/Dashboard'));
+const Input = lazy(() => import('../pages/Component/Input'));
+const Table = lazy(() => import('../pages/Component/Table'));
+const User = lazy(() => import('../pages/User'));
+
+const NotFound = lazy(() => import('../pages/Anomaly/NotFound'));
+const Login = lazy(() => import('../pages/Login'));
+
+export const routerConfig: RouterConfigItem[] = [
   {
+    key: 'dashboard',
     path: '/dashboard',
-    name: 'dashboard',
-    title: 'router.title.dashboard',
-    element: lazy(() => import('../pages/Dashboard')),
+    label: 'router.title.dashboard',
+    element: <Dashboard />,
     icon: <DashboardOutlined />,
     menuType: 'Other',
   },
   {
     path: '/component',
-    name: 'component',
+    key: 'component',
     icon: <CodeSandboxOutlined />,
-    title: 'router.title.component',
+    label: 'router.title.component',
     menuType: 'Other',
     children: [
       {
         path: '/component/input',
-        element: lazy(() => import('../pages/Component/Input')),
-        name: 'input',
-        title: 'router.title.input',
+        element: <Input />,
+        key: 'input',
+        label: 'router.title.input',
       },
       {
         path: '/component/table',
-        element: lazy(() => import('../pages/Component/Table')),
-        name: 'table',
-        title: 'router.title.table',
+        element: <Table />,
+        key: 'table',
+        label: 'router.title.table',
       },
     ],
   },
   {
+    key: 'user',
+    path: '/user',
+    label: 'router.title.user',
+    element: <User />,
+    icon: <UserOutlined />,
+    menuType: 'Other',
+  },
+  {
     path: '/404',
-    name: 'not_found',
-    title: 'Not Found',
-    element: lazy(() => import('../pages/Anomaly/NotFound')),
+    key: 'not_found',
+    element: <NotFound />,
+    menuType: 'Hidden',
+  },
+  {
+    path: '*',
+    hideInMenu: true,
+    key: 'null',
+    element: <Navigate to="/dashboard" />,
     menuType: 'Hidden',
   },
 ];
-export const unAuthRouter: RouterItem[] = [
+export const unAuthRouter: RouterConfigItem[] = [
   {
     path: '/login',
-    name: 'login',
-    element: lazy(() => import('../pages/Login')),
-    title: 'login',
+    key: 'login',
+    element: <Login />,
     menuType: 'Authentication',
+  },
+  {
+    path: '*',
+    hideInMenu: true,
+    key: 'null',
+    element: <Navigate to="/login" />,
+    menuType: 'Hidden',
   },
 ];

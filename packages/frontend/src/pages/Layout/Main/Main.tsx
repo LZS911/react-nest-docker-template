@@ -6,7 +6,6 @@ const Main: React.FC<{
   children: ReactNode;
 }> = ({ children }) => {
   const { pathname } = useLocation();
-
   const breadcrumbList = useMemo(() => {
     return pathname.slice(1).split('/');
   }, [pathname]);

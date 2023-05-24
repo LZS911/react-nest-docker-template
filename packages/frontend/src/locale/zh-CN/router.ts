@@ -5,5 +5,6 @@ export default {
     component: '组件',
     input: 'input',
     table: 'table',
+    user: '用户',
   },
 };

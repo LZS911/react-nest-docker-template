@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useTheme from '../../../customHooks/useTheme';
+import { RouterConfigItem } from '../../../router';
 import { routerConfig } from '../../../router/router.config';
 
 const NavExpanded: React.FC = () => {
@@ -20,11 +21,11 @@ const NavExpanded: React.FC = () => {
         return {
           key: v.path,
           icon: v.icon ?? <QuestionOutlined />,
-          label: t(v.title),
-          children: v.children.map((c) => {
+          label: t(v.label),
+          children: v.children.map((c: RouterConfigItem) => {
             return {
               key: c.path,
-              label: c.name,
+              label: t(c.label),
             };
           }),
         };
@@ -33,7 +34,7 @@ const NavExpanded: React.FC = () => {
       return {
         key: v.path,
         icon: v.icon ?? <QuestionOutlined />,
-        label: t(v.title),
+        label: t(v.label),
       };
     });
   }, [t]);

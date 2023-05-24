@@ -7,7 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "preinstall": "npx only-allow pnpm",
     "g:api": "node scripts/g_frontend_api/dist/index.js",
-    "g:api:dev": "cd scripts/g_frontend_api && tsc --watch"
+    "g:api:dev": "cd scripts/g_frontend_api && tsc --watch",
+    "prettier:w": "prettier -w packages/*/src/",
+    "eslint": "eslint  packages/*/src/",
+    "ts-check": "tsc --noEmit",
+    "checker": "pnpm ts-check && pnpm eslint"
   },
   "keywords": [],
   "author": "",

@@ -19,7 +19,7 @@ describe('test Layout/Sider', () => {
 
   beforeEach(() => {
     jest.useFakeTimers();
-    useDispatchMock.mockImplementation(() => {});
+    useDispatchMock.mockImplementation(() => jest.fn());
     useSelectorMock.mockImplementation((selector) => {
       return selector({
         layout: layoutInitialState,

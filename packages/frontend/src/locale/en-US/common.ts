@@ -29,4 +29,8 @@ export default {
       Mon: 'Mon',
     },
   },
+  request: {
+    noticeFailTitle: 'Request Failed',
+  },
+  unknownError: 'Unknown Error ',
 };

@@ -52,7 +52,7 @@ export class UserController {
     status: 200,
     type: GetUsersResV1,
   })
-  findAll() {
+  async findAll() {
     return this.userService.findAll({});
   }
 

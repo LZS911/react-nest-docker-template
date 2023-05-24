@@ -3,8 +3,7 @@ import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useResizeObserver from 'use-resize-observer';
 import { userConfigInitialState } from '../../store/userConfig';
-import RouterComponent, { registerRouter } from '../index';
-import { routerConfig, unAuthRouter } from '../router.config';
+import RouterComponent from '../index';
 
 jest.mock('react-redux', () => {
   return {
@@ -50,11 +49,6 @@ afterEach(() => {
 });
 
 describe('test router', () => {
-  test('should match snapshot for registerRouter', () => {
-    expect(registerRouter(routerConfig)).toMatchSnapshot();
-    expect(registerRouter(unAuthRouter)).toMatchSnapshot();
-  });
-
   test('should match snapshot when login state is invalid', async () => {
     const { container } = render(<RouterComponent />);
     await act(async () => {
@@ -91,12 +85,11 @@ describe('test router', () => {
         },
       });
     });
-    const { container } = render(<RouterComponent />);
+    render(<RouterComponent />);
     await act(async () => {
       await waitFor(() => {
         jest.advanceTimersByTime(800);
       });
     });
-    // expect(container).toMatchSnapshot();
   });
 });

@@ -12,7 +12,7 @@ export interface IThemeBaseProps {
 }
 export type IPaperProps = IThemeBaseProps;
 export interface IIconProps extends IThemeBaseProps {
-  icon: JSX.Element;
+  icon: React.ReactNode;
   onClick?: MouseEventHandler<HTMLSpanElement>;
   isHoverCls?: boolean;
   badge?: BadgeProps;

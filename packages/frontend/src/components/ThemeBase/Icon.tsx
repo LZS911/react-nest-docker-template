@@ -1,5 +1,6 @@
 import { Badge, Tooltip } from 'antd';
 import classNames from 'classnames';
+import React from 'react';
 import { IIconProps } from '.';
 import useTheme, {
   getCurrentColorSchemeStrings,
@@ -17,7 +18,7 @@ const Icon: React.FC<IIconProps> = ({
 }) => {
   const { isDark, currentColorScheme } = useTheme();
 
-  const genBadge = (el: JSX.Element) => {
+  const genBadge = (el: React.ReactNode) => {
     return badge ? (
       <Badge
         {...badge}
@@ -33,8 +34,8 @@ const Icon: React.FC<IIconProps> = ({
     );
   };
 
-  const genToolTip = (el: JSX.Element) => {
-    return tooltip ? <Tooltip {...tooltip}>{el}</Tooltip> : el;
+  const genToolTip = (el: React.ReactNode) => {
+    return tooltip ? <Tooltip {...tooltip}>{el}</Tooltip> : <>{el}</>;
   };
 
   return genToolTip(

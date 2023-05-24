@@ -1,6 +1,5 @@
 import { Suspense, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { registerRouter } from '.';
+import { useRoutes } from 'react-router-dom';
 import HeaderProgress from '../components/HeaderProgress';
 import useUserConfig from '../customHooks/useUserConfig';
 import Layout from '../pages/Layout';
@@ -12,6 +11,9 @@ const RouterComponent: React.FC = () => {
     getUserConfig();
   }, [getUserConfig]);
 
+  const elements = useRoutes(isLogin ? routerConfig : unAuthRouter);
+
+  console.log(window.location.href);
   const renderDocument = () => {
     const validLoginStatus = isLogin || token;
     if (getUserInfoLoading) {
@@ -19,30 +21,17 @@ const RouterComponent: React.FC = () => {
     }
 
     if (!validLoginStatus) {
-      return (
-        <Suspense fallback={<HeaderProgress />}>
-          <Routes>
-            {registerRouter(unAuthRouter)}
-            <Route path="*" element={<Navigate to="/login" />} />
-          </Routes>
-        </Suspense>
-      );
+      return <Suspense fallback={<HeaderProgress />}>{elements}</Suspense>;
     }
 
     return (
       <Suspense fallback={<HeaderProgress />}>
-        <Layout>
-          <Routes>
-            {registerRouter(routerConfig)}
-            <Route path="/" element={<Navigate to="/dashboard" />} />
-            <Route path="*" element={<Navigate to="/404" />} />
-          </Routes>
-        </Layout>
+        <Layout>{elements}</Layout>
       </Suspense>
     );
   };
 
-  return <BrowserRouter>{renderDocument()}</BrowserRouter>;
+  return renderDocument();
 };
 
 export default RouterComponent;

@@ -6,6 +6,7 @@ export default {
     usernameLabel: 'Username',
     passwordLabel: 'Password',
     forgotPassword: 'Forgot Password?',
+    emailLabel: 'email',
   },
   loginHeader: {
     title: 'Todo',

@@ -3,8 +3,10 @@ import enUS from './en-US';
 import * as i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LocalStorageWrapper from '../utils/LocalStorageWrapper';
-import { Dictionary } from '../typing/common.type';
+import { Dictionary, TemplateKeyPath } from '../typing/common.type';
 import CONSTANT from '../common/constant';
+
+export type I18nKey = TemplateKeyPath<typeof zhCN.translation>;
 
 enum SupportLanguage {
   zhCN = 'zh-CN',
@@ -26,9 +28,9 @@ i18n.use(initReactI18next).init({
   },
 });
 
-const translation = (key: string, dic?: Dictionary) => {
+const t = (key: I18nKey, dic?: Dictionary) => {
   return i18n.t(key, dic);
 };
 
-export { SupportLanguage, translation };
+export { SupportLanguage, t };
 export default i18n;

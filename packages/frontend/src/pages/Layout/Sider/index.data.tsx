@@ -1,6 +1,8 @@
 import { NavigateFunction } from 'react-router-dom';
+import { RouterConfigItem } from '../../../router';
 import { routerConfig } from '../../../router/router.config';
 import { INavIconList } from './index';
+
 export const genNavIconList: (
   navigate: NavigateFunction
 ) => Array<INavIconList | null> = (navigate) => {
@@ -10,8 +12,8 @@ export const genNavIconList: (
     }
     if (!v.children) {
       return {
-        name: v.name,
-        title: v.title,
+        name: v.key,
+        title: v.label,
         path: v.path,
         icon: v.icon,
         onClick: () => {
@@ -21,15 +23,15 @@ export const genNavIconList: (
     }
 
     return {
-      name: v.name,
+      name: v.key,
       path: v.path,
-      title: v.title,
+      title: v.label,
       icon: v.icon,
-      children: v.children.map((c) => {
+      children: v.children.map((c: RouterConfigItem) => {
         return {
-          name: c.name,
+          name: c.key,
           path: c.path,
-          title: c.title,
+          title: c.label,
           onClick: () => {
             navigate(c.path);
           },
