@@ -1,16 +1,28 @@
+#获取node镜像源
 FROM node:16.16.0-alpine
-WORKDIR /projects
+
+#设置工作目录
+WORKDIR /app
+
+# 将 pnpm-lock.yaml 拷贝至工作目录, 为后续的 pnpm fetch 做准备
 COPY ./pnpm-lock.yaml ./
 
+# 安装 pnpm, 并且固定版本, 也可以考虑在获取node镜像源时直接获取带有pnpm的镜像, 这样就能省略这一步了
 RUN npm install -g pnpm@8.3.1
+
+# pnpm fetch 通过提供仅使用锁定文件中的信息将包加载到虚拟存储中的能力，完美地解决了上述问题. 具体见: https://pnpm.io/cli/fetch
 RUN pnpm fetch
 
 COPY . .
 
+# 安装依赖, 关于 --offline 见: https://pnpm.io/cli/fetch
 RUN pnpm install -r --offline
 
-VOLUME ["/projects/node_modules/", "/projects/packages/backend/node_modules/", "/projects/.pnpm-store/"]
+# https://zhuanlan.zhihu.com/p/89335014
+VOLUME ["/app/node_modules/", "/app/packages/backend/node_modules/", "/app/.pnpm-store/"]
 
-# Value set in .env file.
+# https://yeasy.gitbook.io/docker_practice/image/dockerfile/expose
 EXPOSE $BACKEND_PORT
+
+# 启动后端服务
 CMD rm -rf dist && cd packages/backend && pnpm start:debug

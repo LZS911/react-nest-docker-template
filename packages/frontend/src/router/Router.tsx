@@ -13,7 +13,6 @@ const RouterComponent: React.FC = () => {
 
   const elements = useRoutes(isLogin ? routerConfig : unAuthRouter);
 
-  console.log(window.location.href);
   const renderDocument = () => {
     const validLoginStatus = isLogin || token;
     if (getUserInfoLoading) {

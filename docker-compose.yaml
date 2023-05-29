@@ -10,7 +10,7 @@ services:
     ports:
       - '${FRONTEND_PORT}:${FRONTEND_PORT}'
     volumes:
-      - .:/projects
+      - .:/app
     networks:
       bp-network:
         ipv4_address: 172.25.0.3
@@ -22,15 +22,13 @@ services:
     restart: always
     env_file: .env
     volumes:
-      - .:/projects
+      - .:/app
     networks:
       bp-network:
         ipv4_address: 172.25.0.2
     ports:
       - '${BACKEND_PORT}:${BACKEND_PORT}'
     depends_on:
-      - bp-pg-db
-    links:
       - bp-pg-db
   bp-pg-db:
     image: postgres:12-alpine
