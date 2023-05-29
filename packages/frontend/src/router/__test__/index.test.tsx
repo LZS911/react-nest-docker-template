@@ -1,4 +1,4 @@
-import { act, render, waitFor } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useResizeObserver from 'use-resize-observer';
@@ -52,9 +52,7 @@ describe('test router', () => {
   test('should match snapshot when login state is invalid', async () => {
     const { container } = render(<RouterComponent />);
     await act(async () => {
-      await waitFor(() => {
-        jest.advanceTimersByTime(800);
-      });
+      jest.advanceTimersByTime(800);
     });
 
     expect(dispatchMock).toBeCalledTimes(1);
@@ -87,9 +85,7 @@ describe('test router', () => {
     });
     render(<RouterComponent />);
     await act(async () => {
-      await waitFor(() => {
-        jest.advanceTimersByTime(800);
-      });
+      jest.advanceTimersByTime(800);
     });
   });
 });

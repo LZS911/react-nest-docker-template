@@ -6,6 +6,7 @@ import useTheme, {
 } from './customHooks/useTheme';
 import { useInitFontFamily } from './customHooks/useFontFamily';
 import { BrowserRouter } from 'react-router-dom';
+import 'antd/dist/reset.css';
 
 function App() {
   const { isDark, currentColorScheme } = useTheme();

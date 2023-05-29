@@ -1,6 +1,5 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Form } from 'antd';
-import { useForm } from 'antd/lib/form/Form';
 import ApiBase from '../../utils/api';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +12,7 @@ const targetPath = '/dashboard';
 const Login: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [form] = useForm<ILoginForm>();
+  const [form] = Form.useForm<ILoginForm>();
   const { setLoginState } = useUserConfig();
   const handleLogin = async () => {
     const { emailAddress, password } = await form.validateFields();

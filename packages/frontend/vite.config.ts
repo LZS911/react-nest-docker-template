@@ -25,7 +25,6 @@ export default defineConfig((config) => {
       babelImportPluginOptions: [
         {
           libraryName: 'antd',
-          style: 'css',
         },
         {
           libraryName: 'lodash',
