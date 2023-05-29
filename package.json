@@ -11,7 +11,8 @@
     "prettier:w": "prettier -w packages/*/src/",
     "eslint": "eslint  packages/*/src/",
     "ts-check": "tsc --noEmit",
-    "checker": "pnpm ts-check && pnpm eslint"
+    "checker": "pnpm ts-check && pnpm eslint",
+    "build:frontend": "cd packages/frontend && pnpm build"
   },
   "keywords": [],
   "author": "",
