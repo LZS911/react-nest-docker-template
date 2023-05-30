@@ -11,7 +11,8 @@ import {
 import { Dictionary } from '../typing/common.type';
 import { storeFactory } from './mockRedux';
 type RenderParams = Parameters<typeof render>;
-export const renderWithRedux = (
+
+export const renderWithRedux: (arg: any) => ReturnType<typeof render> = (
   ...[ui, option, initStore]: [...RenderParams, Dictionary?]
 ) => {
   return render(
@@ -19,7 +20,7 @@ export const renderWithRedux = (
     option
   );
 };
-export const renderWithRouter = (...[ui, option]: [...RenderParams]) => {
+export const renderWithRouter: any = (...[ui, option]: [...RenderParams]) => {
   return render(<BrowserRouter>{ui}</BrowserRouter>, option);
 };
 
@@ -35,13 +36,13 @@ export const renderHooksWithRedux = <TProps, TResult>(
   } as any);
 };
 
-export const renderWithServerRouter = (
+export const renderWithServerRouter: any = (
   ...[ui, option, props]: [...RenderParams, RouterProps]
 ) => {
   return render(<Router {...props}>{ui}</Router>, option);
 };
 
-export const renderWithServerRouterAndRedux = (
+export const renderWithServerRouterAndRedux: any = (
   ...[ui, option, props]: [...RenderParams, RouterProps]
 ) => {
   return render(
@@ -53,7 +54,7 @@ export const renderWithServerRouterAndRedux = (
   );
 };
 
-export const renderWithMemoryRouter = (
+export const renderWithMemoryRouter: any = (
   ...[ui, option, props]: [...RenderParams, MemoryRouterProps?]
 ) => {
   return render(<MemoryRouter {...props}>{ui}</MemoryRouter>, option);

@@ -19,8 +19,11 @@ module.exports = {
   ],
   preset: 'ts-jest',
   transform: {
-    '^.+\\.(ts|tsx)$': 'ts-jest',
+    '^.+\\.(ts|tsx|js|jsx)$': '<rootDir>/babelTransform.js',
   },
+  transformIgnorePatterns: [
+    'node_modules/(?!(?:.pnpm/)?(.+/es|node-fetch|data-uri-to-buffer|fetch-blob))(?!.*@(babel|ant-design))(?!array-move)[^/]+?/(?!(es|node_modules)/)',
+  ],
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   testEnvironment: 'jsdom',
   moduleNameMapper: {

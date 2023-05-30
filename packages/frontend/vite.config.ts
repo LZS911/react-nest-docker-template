@@ -24,9 +24,6 @@ export default defineConfig((config) => {
       onlyBuild: true,
       babelImportPluginOptions: [
         {
-          libraryName: 'antd',
-        },
-        {
           libraryName: 'lodash',
           camel2DashComponentName: false,
         },
@@ -40,7 +37,7 @@ export default defineConfig((config) => {
   if (isProduction) {
     plugins.push(
       vitePluginVisualizer({
-        open: true,
+        open: false,
         gzipSize: true,
         brotliSize: true,
       }) as any

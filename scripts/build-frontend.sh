@@ -1,4 +1,6 @@
-pnpm fetch
-pnpm install -r --offline
+# pnpm fetch
+# pnpm install -r --offline
 pnpm build:frontend
-tar zcf todo-frontend.tar.gz ./packages/frontend/dist
+cd ./packages/frontend
+tar zcf todo-frontend.tar.gz ./dist
+mv ./todo-frontend.tar.gz ../../todo-frontend.tar.gz

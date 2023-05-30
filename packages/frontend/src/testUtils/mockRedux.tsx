@@ -9,7 +9,7 @@ const reducers = combineReducers({
   layout,
   userConfig,
 });
-export const storeFactory = (initStore: Dictionary = {}) => {
+export const storeFactory: any = (initStore: Dictionary = {}) => {
   return configureStore({
     reducer: reducers,
     preloadedState: initStore,
