@@ -25,4 +25,4 @@ VOLUME ["/app/node_modules/", "/app/packages/backend/node_modules/", "/app/.pnpm
 EXPOSE $BACKEND_PORT
 
 # 启动后端服务
-CMD rm -rf dist && cd packages/backend && pnpm start:debug
+CMD cd packages/backend && pnpm start:debug && pnpm migrate:postgres:dev && pnpm prisma:gen

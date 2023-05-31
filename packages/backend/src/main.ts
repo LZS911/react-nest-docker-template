@@ -25,7 +25,7 @@ async function bootstrap() {
 
   generateSwagger(app);
 
-  await app.listen(7878);
+  await app.listen(3535);
 
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);

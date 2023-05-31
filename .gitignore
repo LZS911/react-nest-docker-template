@@ -8,6 +8,7 @@ pnpm-debug.log*
 .pnpm-store
 lerna-debug.log*
 .env
+.env.prod
 
 /packages/*/node_modules
 node_modules

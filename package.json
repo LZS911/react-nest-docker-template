@@ -12,7 +12,8 @@
     "eslint": "eslint  packages/*/src/",
     "ts-check": "tsc --noEmit",
     "checker": "pnpm ts-check && pnpm eslint",
-    "build:frontend": "cd packages/frontend && pnpm build"
+    "build:frontend": "cd packages/frontend && pnpm build",
+    "build:backend": "cd packages/backend && pnpm build"
   },
   "keywords": [],
   "author": "",

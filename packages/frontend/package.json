@@ -13,7 +13,7 @@
     "build:docker": "docker build -t react-docker -f Dockerfile.local .",
     "run:docker": "docker run -p 7880:7879 react-docker",
     "preview": "vite preview",
-    "stylelint": " stylelint \"./src\"",
+    "stylelint": "stylelint \"./src\"",
     "cspell": "cspell \"src/**/{*.ts,*.tsx,*.js,*.jsx}\"",
     "eslint": "eslint -c ./.eslintrc.json \"src/**/{*.ts,*.tsx,*.js,*.jsx}\"",
     "checker": "npm-run-all -p eslint cspell stylelint ts-check prettier:c",
