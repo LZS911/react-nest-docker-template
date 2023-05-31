@@ -18,6 +18,9 @@ stats.html
 coverage
 target
 
+
+todo-frontend.tar.gz
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

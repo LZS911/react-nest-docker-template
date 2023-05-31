@@ -1,0 +1,65 @@
+version: '3.9'
+services:
+  backend-prod:
+    container_name: backend-prod
+    user: root
+    build:
+      context: ./
+      dockerfile: ./packages/backend/Dockerfile.production
+    restart: always
+    env_file: .env
+    volumes:
+      - .:/app
+    networks:
+      bp-network:
+        ipv4_address: 172.25.0.2
+    ports:
+      - '${BACKEND_PORT}:3535'
+    depends_on:
+      - bp-pg-db-prod
+    command: [sh, -c, "cd packages/backend && pnpm migrate:postgres && pnpm prisma:gen && pnpm build && pnpm start:prod"]
+  bp-pg-db-prod:
+    image: postgres:12-alpine
+    restart: always
+    container_name: bp-pg-db-prod
+    env_file:
+      - .env
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - '${DB_PORT}:${DB_PORT}'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      bp-network:
+        ipv4_address: 172.25.0.5
+  pgadmin-portal-prod:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: pgadmin-portal-prod
+    env_file:
+      - .env
+    environment:
+      PGADMIN_DEFAULT_PASSWORD: '${PGADMIN_DEFAULT_PASSWORD}'
+      PGADMIN_DEFAULT_EMAIL: '${PGADMIN_DEFAULT_EMAIL}'
+    volumes:
+      - pgadmin:/root/.pgadmin
+    ports:
+      - '${PGADMIN_PORT}:80'
+    depends_on:
+      - bp-pg-db-prod
+    networks:
+      bp-network:
+        ipv4_address: 172.25.0.6
+volumes:
+  pgdata:
+  pgadmin:
+networks:
+  bp-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16
