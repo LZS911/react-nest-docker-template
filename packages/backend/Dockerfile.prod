@@ -1,8 +1,11 @@
-FROM lzs911/pnpm:8.3.1-node16.16
+FROM node:16.16.0-alpine
+
 
 WORKDIR /app
 
 COPY ./pnpm-lock.yaml ./
+
+RUN npm install -g pnpm@8.3.1
 
 RUN pnpm fetch
 
