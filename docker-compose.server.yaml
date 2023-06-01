@@ -5,7 +5,7 @@ services:
     user: root
     build:
       context: ./
-      dockerfile: ./packages/backend/Dockerfile.production
+      dockerfile: ./packages/backend/Dockerfile.prod
     restart: always
     env_file: .env
     volumes:
