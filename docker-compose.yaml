@@ -5,6 +5,7 @@ services:
     build:
       context: ./
       dockerfile: ./packages/frontend/Dockerfile.local
+    image: todo-frontend
     restart: always
     env_file: .env
     ports:
@@ -20,6 +21,7 @@ services:
     build:
       context: ./
       dockerfile: ./packages/backend/Dockerfile.local
+    image: todo-frontend
     restart: always
     env_file: .env
     volumes:

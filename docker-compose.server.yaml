@@ -6,6 +6,7 @@ services:
     build:
       context: ./
       dockerfile: ./packages/backend/Dockerfile.prod
+    image: todo-webserver-backend-prod
     restart: always
     env_file: .env
     networks:
