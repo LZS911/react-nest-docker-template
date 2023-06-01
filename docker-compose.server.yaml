@@ -8,8 +8,6 @@ services:
       dockerfile: ./packages/backend/Dockerfile.prod
     restart: always
     env_file: .env
-    volumes:
-      - .:/app
     networks:
       bp-network:
         ipv4_address: 172.25.0.2
