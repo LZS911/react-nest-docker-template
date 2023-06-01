@@ -4,8 +4,6 @@ WORKDIR /app
 
 COPY ./pnpm-lock.yaml ./
 
-RUN npm install -g pnpm@8.3.1
-
 RUN pnpm fetch
 
 COPY . .
