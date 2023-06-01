@@ -1,5 +1,5 @@
-# pnpm fetch
-# pnpm install -r --offline
+pnpm fetch
+pnpm install -r --offline
 
 # backend
 docker-compose -f docker-compose.server.yaml stop && docker-compose -f docker-compose.server.yaml up --build -d --remove-orphans
