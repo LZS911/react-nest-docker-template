@@ -1,5 +1,4 @@
-# FROM lzs911/pnpm:8.3.1-node16.16
-FROM node:16.16.0-alpine
+FROM lzs911/pnpm:8.3.1-node16.16
 
 WORKDIR /app
 
