@@ -13,4 +13,4 @@ COPY . .
 
 RUN pnpm install -r --offline
 
-VOLUME ["/app/node_modules/", "/app/.pnpm-store/"]
+VOLUME ["/app/node_modules/", "/app/packages/backend/node_modules/", "/app/.pnpm-store/"]
