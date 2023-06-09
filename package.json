@@ -10,8 +10,9 @@
     "g:api:dev": "cd scripts/g_frontend_api && tsc --watch",
     "prettier:w": "prettier -w packages/*/src/",
     "eslint": "eslint  packages/*/src/",
+    "cspell": "cspell \"packages/*/src/**/{*.ts,*.tsx}\"",
     "ts-check": "tsc --noEmit",
-    "checker": "pnpm ts-check && pnpm eslint",
+    "checker": "pnpm ts-check && pnpm eslint && pnpm cspell",
     "build:frontend": "cd packages/frontend && pnpm build",
     "build:backend": "cd packages/backend && pnpm build"
   },

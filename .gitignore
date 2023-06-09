@@ -29,3 +29,5 @@ todo-frontend.tar.gz
 *.njsproj
 *.sln
 *.sw?
+packages/*/template-generate.js
+.hintrc
