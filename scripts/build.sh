@@ -11,4 +11,6 @@ tar zcf todo-frontend.tar.gz ./dist
 mv ./todo-frontend.tar.gz ../../todo-frontend.tar.gz
 
 # remove <none> images
-docker rmi $(docker images -f "dangling=true" -q)
+if [ -n "$(docker images -q -f dangling=true)" ]; 
+then docker rmi $(docker images -q -f dangling=true); 
+fi
