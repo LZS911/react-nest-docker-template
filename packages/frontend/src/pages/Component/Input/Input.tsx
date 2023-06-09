@@ -10,7 +10,7 @@ const Input: React.FC = () => {
         onChange={(e) => setButtonName(e.target.value)}
       />
       <Button onClick={() => setButtonName('')}>
-        {buttonName || 'default'}
+        {buttonName || 'button'}
       </Button>
     </Space>
   );
