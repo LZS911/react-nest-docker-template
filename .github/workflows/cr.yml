@@ -6,16 +6,17 @@ permissions:
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, synchronize]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: LZS911/ChatGPT-CodeReview@master
+      - uses: LZS911/ChatGPT-CodeReview@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.DIFY_API_KEY }}
+          DIFY_API_KEY: ${{ secrets.DIFY_API_KEY }}
+          ACTIONS_STEP_DEBUG: true
           # optional
           LANGUAGE: Chinese
           PROMPT:
