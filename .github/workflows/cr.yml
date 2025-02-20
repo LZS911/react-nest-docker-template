@@ -15,7 +15,7 @@ jobs:
       - uses: LZS911/ChatGPT-CodeReview@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.DIFY_API_KEY }}
+          DIFY_API_KEY: ${{ secrets.DIFY_API_KEY }}
           # optional
           LANGUAGE: Chinese
           PROMPT:
