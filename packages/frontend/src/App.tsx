@@ -18,6 +18,8 @@ function App() {
   useInitTheme();
   useInitFontFamily();
 
+  console.log(primaryColor)
+
   return (
     <BrowserRouter>
       <ConfigProvider
